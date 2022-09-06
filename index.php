@@ -1,7 +1,7 @@
 <?php
 ob_flush();
 session_start();
-$bIsUserLoggedIn = !isset($_SESSION['id']);
+$bIsUserLoggedIn = isset($_SESSION['id']);
 $sGame = isset($_GET['game']) ? $_GET['game'] : 'coinflip';
 ?>
 <!doctype html>
@@ -19,6 +19,7 @@ $sGame = isset($_GET['game']) ? $_GET['game'] : 'coinflip';
     <link rel="stylesheet" href="src/assets/styles/maintenance.scss">
     <link rel="stylesheet" href="src/assets/styles/coinflip.scss">
     <link rel="stylesheet" href="src/assets/styles/spectate.scss">
+    <link rel="stylesheet" href="src/assets/styles/modal.scss">
     <script src="https://kit.fontawesome.com/467cba3d21.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
             integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
@@ -65,8 +66,8 @@ $sGame = isset($_GET['game']) ? $_GET['game'] : 'coinflip';
         </div>
     <?php } else { ?>
         <div class="header__buttons">
-            <a href="index.php?game=<?= $sGame ?>&action=register" class="header__buttons--button">Registrieren</a>
-            <a href="index.php?game=<?= $sGame ?>&action=login" class="header__buttons--button">Login</a>
+            <a href="index.php?game=<?= $sGame ?>&modal=register" class="header__buttons--button">Registrieren</a>
+            <a href="index.php?game=<?= $sGame ?>&modal=login" class="header__buttons--button">Login</a>
         </div>
     <?php } ?>
 </header>
@@ -81,8 +82,13 @@ $sGame = isset($_GET['game']) ? $_GET['game'] : 'coinflip';
             break;
     }
     $aQuerys = explode('&', $_SERVER['QUERY_STRING']);
-    if (isset($aQuerys[1]) && $aQuerys[1] == 'spectate=1') {
-        include('src/assets/includes/spectate.php');
+    if(isset($aQuerys[1])){
+        if($aQuerys[1] == 'spectate=1') {
+            include('src/assets/includes/spectate.php');
+        }
+        if(str_contains($aQuerys[1], 'modal')){
+            include('src/assets/includes/modal.php');
+        }
     }
     ?>
 </main>
