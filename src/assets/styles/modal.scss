@@ -10,36 +10,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   z-index: 98;
   background: rgba(47, 47, 53, 0.7);
+  text-align: center;
 }
 
-.modal__banned {
+/* Information Modal */
+
+.modal__info {
   padding: 20px;
-  max-width: 400px;
   border-radius: 4px;
   background-color: rgba(36, 37, 47, 1);
   border: 1px solid rgba(51, 53, 65, 1);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  max-width: 400px;
+  border-radius: 4px;
+  line-height: 1.2;
+  z-index: 99;
 }
 
-.modal__banned--header {
+.modal__info--header {
   line-height: 1.5;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.modal__banned--header--heading {
-  margin-top: 4px;
+.modal__info--header--heading {
   margin-bottom: 4px;
   color: #E9B10B;
   font-size: 32px;
   font-weight: 700;
 }
 
-.modal__banned--body {
+.modal__info--body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,13 +51,14 @@
   gap: 16px;
 }
 
-.modal__banned--body--text {
+.modal__info--body--text {
   color: #f2f2f2;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
+  width: 90%;
 }
 
-.modal__banned--body--button {
+.modal__info--body--button {
   display: block;
   outline: none;
   border: none;
@@ -70,39 +75,48 @@
   border-radius: 4px;
 }
 
-.modal__banned--body--button:hover {
+.modal__info--body--button:hover {
   cursor: pointer;
   background-color: #f5c432;
 }
 
-.modal__login {
+.modal__info--body--discord {
+  color: #5865F2;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* Form Modal */
+
+.modal__form {
   padding: 20px;
   border-radius: 4px;
   background-color: rgba(36, 37, 47, 1);
   border: 1px solid rgba(51, 53, 65, 1);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   position: relative;
+  z-index: 99;
 }
 
-.modal__login--close {
+.modal__form--close {
   position: absolute;
   top: 16px;
   right: 4px;
   color: #fff;
 }
 
-.modal__login--header {
+.modal__form--header {
   text-align: center;
   line-height: 1.5;
 }
 
-.modal__login--header--heading {
+.modal__form--header--heading {
   color: #E9B10B;
   font-size: 32px;
   font-weight: 700;
 }
 
-.modal__login--body--form {
+.modal__form--body--form {
   margin-top: 8px;
   display: flex;
   flex-direction: column;
@@ -111,7 +125,7 @@
   gap: 8px;
 }
 
-.modal__login--body--form--icon {
+.modal__form--body--form--icon {
   color: #fff;
 }
 
@@ -122,7 +136,7 @@
   padding-right: 12px;
 }
 
-.modal__login--body--form--email, .modal__login--body--form--password, .modal__register--body--form--code {
+.modal__form--body--form--username, .modal__form--body--form--email, .modal__form--body--form--password, .modal__form--body--form--code {
   padding: 12px 16px;
   background-color: #141419;
   color: #fff;
@@ -132,7 +146,7 @@
   border: none;
 }
 
-.modal__login--body--form--submit {
+.modal__form--body--form--submit {
   margin-top: 8px;
   display: block;
   outline: none;
@@ -151,98 +165,19 @@
   margin-bottom: 8px;
 }
 
-.modal__login--body--form--submit:hover {
+.modal__form--body--form--submit:hover {
   cursor: pointer;
   background-color: #f5c432;
 }
 
-.modal__login--body--password--link {
+.modal__form--body--password--link {
   color: #fff;
   text-decoration: none;
 }
 
-.modal__register {
-  padding: 20px;
-  border-radius: 4px;
-  background-color: rgba(36, 37, 47, 1);
-  border: 1px solid rgba(51, 53, 65, 1);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  position: relative;
-}
-
-.modal__register--close {
-  position: absolute;
-  top: 16px;
-  right: 4px;
-  color: #fff;
-}
-
-.modal__register--header {
-  text-align: center;
-  line-height: 1.5;
-}
-
-.modal__register--header--heading {
-  color: #E9B10B;
-  font-size: 32px;
-  font-weight: 700;
-}
-
-.modal__register--body--form {
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-
-.modal__register--body--form--icon {
-  color: #fff;
-}
-
-#register-email, #register-password, #register-password-repeat, #register-code {
+.modal__form--body--form--input {
   background-color: #141419;
   border: 2px solid rgba(51, 53, 65);
   border-radius: 4px;
   padding-right: 12px;
-}
-
-.modal__register--body--form--email, .modal__register--body--form--password {
-  padding: 12px 16px;
-  background-color: #141419;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  outline: none;
-  border: none;
-}
-
-.modal__register--body--form--submit {
-  margin-top: 8px;
-  display: block;
-  outline: none;
-  border: none;
-  min-width: 120px;
-  text-align: center;
-  text-decoration: none;
-  color: #141419;
-  background-color: #E9B10B;
-  font-size: 16px;
-  font-weight: 700;
-  box-shadow: inset 0 -3px 0 0 #cc6c31;
-  padding: 12px 16px;
-  transition: background-color .2s ease;
-  border-radius: 4px;
-  margin-bottom: 8px;
-}
-
-.modal__register--body--form--submit:hover {
-  cursor: pointer;
-  background-color: #f5c432;
-}
-
-.modal__register--body--password--link {
-  color: #fff;
-  text-decoration: none;
 }
