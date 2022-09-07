@@ -1,7 +1,7 @@
 <?php
 ob_flush();
 session_start();
-$bIsUserLoggedIn = isset($_SESSION['id']);
+$bIsUserLoggedIn = isset($_SESSION['UUID']);
 $sGame = isset($_GET['game']) ? $_GET['game'] : 'coinflip';
 ?>
 <!doctype html>
@@ -60,7 +60,7 @@ $sGame = isset($_GET['game']) ? $_GET['game'] : 'coinflip';
             </div>
             <img class="header__menu--picture" src="https://minotar.net/avatar/03fb83c664984281933cc52984dec2a3/50"/>
             <i class="header__menu--settings fa-solid fa-gear"></i>
-            <a href="php/logout.php" class="header__menu--logout">
+            <a href="scripts/logout.php?game=<?= $sGame ?>" class="header__menu--logout">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </a>
         </div>
@@ -82,11 +82,11 @@ $sGame = isset($_GET['game']) ? $_GET['game'] : 'coinflip';
             break;
     }
     $aQuerys = explode('&', $_SERVER['QUERY_STRING']);
-    if(isset($aQuerys[1])){
-        if($aQuerys[1] == 'spectate=1') {
+    if (isset($aQuerys[1])) {
+        if ($aQuerys[1] == 'spectate=1') {
             include('src/assets/includes/spectate.php');
         }
-        if(str_contains($aQuerys[1], 'modal')){
+        if (str_contains($aQuerys[1], 'modal')) {
             include('src/assets/includes/modal.php');
         }
     }

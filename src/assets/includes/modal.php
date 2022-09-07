@@ -12,24 +12,25 @@ if ($sModal == 'register') { ?>
                 <h2 class="modal__form--header--heading">Registrieren</h2>
             </div>
             <div class="modal__form--body">
-                <form class="modal__form--body--form" action="#" method="post">
+                <form class="modal__form--body--form" action="scripts/register.php" method="post">
+                    <input class="modal__form--body--form--game" type="hidden" name="register-game" value="<?= $sGame ?>" readonly/>
                     <div class="modal__form--body--form--input">
-                        <input class="modal__form--body--form--email" type="text" placeholder="E-Mail" required/>
+                        <input class="modal__form--body--form--email" type="text" placeholder="E-Mail" name="register-email" required/>
                         <i class="modal__form--body--form--icon fa-solid fa-envelope fa-fw"></i>
                     </div>
                     <div class="modal__form--body--form--input">
-                        <input class="modal__form--body--form--code" type="text"
+                        <input class="modal__form--body--form--code" type="text" name="register-code"
                                placeholder="Dein Registrierungs Code"
                                required/>
                         <i class="modal__form--body--form--icon fa-solid fa-barcode fa-fw"></i>
                     </div>
                     <div class="modal__form--body--form--input">
-                        <input class="modal__form--body--form--password" type="password" placeholder="Passwort"
+                        <input class="modal__form--body--form--password" type="password" placeholder="Passwort" name="register-password"
                                required/>
                         <i class="modal__form--body--form--icon fa-solid fa-lock fa-fw"></i>
                     </div>
                     <div class="modal__form--body--form--input">
-                        <input class="modal__form--body--form--password" type="password" placeholder="Passwort wiederholen"
+                        <input class="modal__form--body--form--password" type="password" placeholder="Passwort wiederholen" name="register-password-repeat"
                                required/>
                         <i class="modal__form--body--form--icon fa-solid fa-repeat fa-fw"></i>
                     </div>
@@ -49,13 +50,14 @@ if ($sModal == 'register') { ?>
                 <h2 class="modal__form--header--heading">Login</h2>
             </div>
             <div class="modal__form--body">
-                <form class="modal__form--body--form" action="#" method="post">
+                <form class="modal__form--body--form" action="scripts/login.php" method="post">
+                    <input class="modal__form--body--form--game" type="hidden" name="login-game" value="<?= $sGame ?>" readonly/>
                     <div class="modal__form--body--form--input">
-                        <input class="modal__form--body--form--email" type="text" placeholder="E-Mail" required/>
+                        <input class="modal__form--body--form--email" type="text" placeholder="E-Mail" name="login-email" required/>
                         <i class="modal__form--body--form--icon fa-solid fa-envelope fa-fw"></i>
                     </div>
                     <div class="modal__form--body--form--input">
-                        <input class="modal__form--body--form--password" type="password" placeholder="Passwort"
+                        <input class="modal__form--body--form--password" type="password" name="login-password" placeholder="Passwort"
                                required/>
                         <i class="modal__form--body--form--icon fa-solid fa-lock fa-fw"></i>
                     </div>
@@ -131,10 +133,88 @@ if ($sModal == 'register') { ?>
             </div>
         </div>
     </div>
+<?php } elseif ($sModal == 'logininfo') { ?>
+    <div class="modal__container" id="modal__container">
+        <div class="modal__info">
+            <div class="modal__info--header">
+                <h2 class="modal__info--header--heading">Login</h2>
+            </div>
+            <div class="modal__info--body">
+                <p class="modal__info--body--text">
+                    Die angegebenen Daten stimmen nicht mit unserem System überein. Bitte versuche es erneut.
+                </p>
+                <a href="index.php?game=<?= $sGame ?>" class="modal__info--body--button">Okay</a>
+            </div>
+        </div>
+    </div>
+<?php } elseif ($sModal == 'registerinfo') { ?>
+    <div class="modal__container" id="modal__container">
+        <div class="modal__info">
+            <div class="modal__info--header">
+                <h2 class="modal__info--header--heading">Registrieen</h2>
+            </div>
+            <div class="modal__info--body">
+                <p class="modal__info--body--text">
+                    Die angegebenen Daten stimmen nicht mit unserem System überein. Bitte versuche es erneut.
+                </p>
+                <a href="index.php?game=<?= $sGame ?>" class="modal__info--body--button">Okay</a>
+            </div>
+        </div>
+    </div>
+<?php } elseif ($sModal == 'codeinvalid') { ?>
+    <div class="modal__container" id="modal__container">
+        <div class="modal__info">
+            <div class="modal__info--header">
+                <h2 class="modal__info--header--heading">Code</h2>
+            </div>
+            <div class="modal__info--body">
+                <p class="modal__info--body--text">
+                    Der angegebenen Registrierungs Code stimmt nicht mit unserem System überein. Bitte versuche es erneut.
+                </p>
+                <a href="index.php?game=<?= $sGame ?>" class="modal__info--body--button">Okay</a>
+            </div>
+        </div>
+    </div>
+<?php } elseif ($sModal == 'codeexpired') { ?>
+    <div class="modal__container" id="modal__container">
+        <div class="modal__info">
+            <div class="modal__info--header">
+                <h2 class="modal__info--header--heading">Code</h2>
+            </div>
+            <div class="modal__info--body">
+                <p class="modal__info--body--text">
+                    Der angegebenen Registrierungs Code ist nicht mehr gültig. Bitte generiere einen neuen Code.
+                </p>
+                <a href="index.php?game=<?= $sGame ?>" class="modal__info--body--button">Okay</a>
+            </div>
+        </div>
+    </div>
+<?php } elseif ($sModal == 'accountduplicate') { ?>
+    <div class="modal__container" id="modal__container">
+        <div class="modal__info">
+            <div class="modal__info--header">
+                <h2 class="modal__info--header--heading">Account</h2>
+            </div>
+            <div class="modal__info--body">
+                <p class="modal__info--body--text">
+                    Es existiert bereits ein Account mit den angebenen Daten. Bitte versuche es erneut.
+                </p>
+                <a href="index.php?game=<?= $sGame ?>" class="modal__info--body--button">Okay</a>
+            </div>
+        </div>
+    </div>
+<?php } elseif ($sModal == 'emailduplicate') { ?>
+    <div class="modal__container" id="modal__container">
+        <div class="modal__info">
+            <div class="modal__info--header">
+                <h2 class="modal__info--header--heading">Account</h2>
+            </div>
+            <div class="modal__info--body">
+                <p class="modal__info--body--text">
+                    Es existiert bereits ein Account mit der angebenen E-Mail Adresse. Bitte versuche es erneut.
+                </p>
+                <a href="index.php?game=<?= $sGame ?>" class="modal__info--body--button">Okay</a>
+            </div>
+        </div>
+    </div>
 <?php } ?>
-<script>
-    var modalBackground = document.getElementById("modal__container");
-    modalBackground.onclick = function () {
-        window.location.href = "index.php?game=<?= $sGame ?>";
-      };
-</script>
