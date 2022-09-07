@@ -55,10 +55,10 @@ $sGame = isset($_GET['game']) ? $_GET['game'] : 'coinflip';
                 </p>
             </div>
             <div class="header__menu--user--container">
-                <p class="header__menu--user--name">Doppelbemme</p>
+                <p class="header__menu--user--name <?= $_SESSION['ROLE'] ?>"><?= $_SESSION['USERNAME'] ?></p>
                 <p class="header__menu--user--level">Level 1</p>
             </div>
-            <img class="header__menu--picture" src="https://minotar.net/avatar/03fb83c664984281933cc52984dec2a3/50"/>
+            <img class="header__menu--picture" src="https://minotar.net/avatar/<?= $_SESSION['UUID'] ?>/50"/>
             <i class="header__menu--settings fa-solid fa-gear"></i>
             <a href="scripts/logout.php?game=<?= $sGame ?>" class="header__menu--logout">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
